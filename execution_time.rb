@@ -52,20 +52,22 @@ def sub_sum(arr)
     res.max
 end 
 
- list = [-5, -1, -3]
-  puts sub_sum(list)
+#  list = [-5, -1, -3]
+#   puts sub_sum(list)
 
   #phase II
   def largest_contiguous_subsum(arr)
-    large_sum = arr.max
-    current_sum = 0
-    (0..arr.length-1).each do |i|
-        current_sum = arr[0..i].sum
-        large_sum = current_sum if current_sum > large_sum
+    large_sum = arr.first  # -1
+    current_sum = arr.first # -3
+    (1..arr.length-1).each do |i|   
+       current_sum = 0 if current_sum < 0 
+        current_sum += arr[i] # arr[i] = 3
+        large_sum = current_sum if current_sum > large_sum 
     end 
-    (0..arr.length-1).each do |i|
-        current_sum = arr[i..-1].sum
-        large_sum = current_sum if current_sum > large_sum
-    end 
+  
     large_sum
   end 
+
+  list = [-5, -1, -3]
+  puts largest_contiguous_subsum(list)
+   
